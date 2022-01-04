@@ -1,0 +1,26 @@
+unit IClienteRepository;
+
+interface
+
+uses
+  System.Classes, System.Generics.Collections, IRepository, Data.DB;
+
+type
+   IClienteRepository<T : class >  = Interface (IRepository<T>)
+   ['{7F72FB61-3DD5-4204-B1B3-88872B36CC2E}']
+
+      function GetByNome(nome : String)       : TDataSet;
+      function GetByNomeObject(nome : String) : TObjectList<T>;
+      function GetByNomeJson(nome : String)   : String;
+
+      function GetByEmail(email : String)       : TDataSet;
+      function GetByEmailObject(email : String) : T;
+      function GetByEmailJson(email : String)   : String;
+
+
+   end;
+
+implementation
+
+
+end.

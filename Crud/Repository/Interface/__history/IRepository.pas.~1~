@@ -1,0 +1,31 @@
+unit IRepository;
+
+interface
+
+uses
+  System.Classes, System.Generics.Collections, Data.DB;
+
+type
+   IRepository<T : class> = Interface
+   ['{5C7AEFDF-18BE-4F52-8D84-7973460A127B}']
+
+      function GetById(id : integer)       : TDataSet;
+      function GetByIdObject(id : integer) : T;
+      function GetByIdJson(id : integer)   : String;
+
+      function GetAll         : TDataSet;
+      function GetAllByObject : TObjectList<T>;
+      function GetAllJson     : String;
+
+      function Post(obj : T)          : T;
+      function PostJson(obj : String) : String;
+
+      function Put(obj : T)          : T;
+      function PutJson(obj : String) : String;
+
+      function Delete(id : integer) : boolean; overload;
+      function Delete(obj : T)      : boolean; overload;
+   End;
+implementation
+
+end.

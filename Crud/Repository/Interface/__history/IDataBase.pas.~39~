@@ -1,0 +1,49 @@
+unit IDataBase;
+
+interface
+
+uses
+  System.Generics.Collections,
+  System.SysUtils,
+  System.Classes,
+  Data.DB ;
+
+type
+   IConnection = Interface
+   ['{716AD7CF-FAEE-4869-8680-4096BB7C2165}']
+      function GetConnection : TCustomConnection;
+      function StarTransaction  : IConnection;
+      function Commit : IConnection;
+      function RollBack : IConnection;
+   End;
+
+   IQuery = Interface
+   ['{70D5CEBB-5865-4738-BC8C-442741228C9F}']
+      function Close :IQuery;
+      function SQLClear :IQuery;
+
+      function SQLAdd(aValue : String) :IQuery;
+      function SQL(aValue : TStrings) :IQuery;
+      function ParamByName(aField : String; aValue : Variant):IQuery;
+      function Open :IQuery;
+      function ExecSQL : IQuery;
+
+      function DataSource(aValue : TDataSource) : IQuery;
+      function GetQuery :TDataSet;
+      function Connection :IConnection;
+    End;
+
+   IFactoryConnection = Interface
+   ['{01C0D959-BED9-4438-A3CB-CD38A0FE9C3A}']
+     function GetConnection : IConnection;
+
+   End;
+   IFactoryQuery = Interface
+     ['{DE1743A4-8739-4505-94DD-7405F4EC3A12}']
+     function Query(aConnection : IConnection) : Iquery;
+
+   End;
+
+implementation
+
+end.
